@@ -2,8 +2,7 @@
 <body>
 <h1>{{ title }} Template is working.</h1>
 {% for obj in object_list %}
-{{ obj.id }} <br/>
-{{ obj.title }} <br/>
+<a href='{% url "detail" id=obj.id %}'>{{ obj.title }}</a> <br/>
 {{ obj.content }} <br/>
 {{ obj.updated }} <br/>
 {% endfor %}
