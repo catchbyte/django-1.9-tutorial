@@ -1,8 +1,12 @@
-<html>
-<body>
+{% extends "base.html" %}
+
+{% block head_title %} {{ block.super }} | {{ instance.title }} {% endblock head_title %}
+
+{% block content %}
+
 <h1>{{ instance.title }} </h1>
 {{ instance.title }}
 {{ instance.content }}
 {{ instance.updated }}
-</body>
-</html>
+
+{% endblock content %}
