@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
@@ -7,9 +7,12 @@ from .forms import PostForm
 # Create your views here.
 
 def post_create(request):
+    if not request.user.is_authenticated():
+        raise Http404
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.user = request.user
         print(form.cleaned_data.get("title"))
         instance.save()
         messages.success(request, "Successfully Created")
