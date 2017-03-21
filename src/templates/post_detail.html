@@ -9,10 +9,23 @@
 <img src='{{instance.image.url}}' class='img-responsive'/>
     {% endif %}
 
-<h1>{{ title }} <small>{{ instance.timestamp }}</small></h1>
 
+<h1>{{ title }} <small>{{ instance.timestamp }}</small></h1>
+        {% if instance.user.get_full_name%}
+    <p>Author: {{instance.user.get_full_name}}</p>
+    {% endif %}
+    <p>
+        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/"
+         data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    </p>
+    <hr/>
+<div class="row">
+<div class="col-sm-12">
 {{ instance.content|linebreaks }}
 
-
+        <hr/>
+    <div class="fb-comments" data-href="127.0.0.1:8000/posts"></div>
+</div>
+</div>
 </div>
 {% endblock content %}
