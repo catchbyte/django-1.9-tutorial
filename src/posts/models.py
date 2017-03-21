@@ -1,11 +1,10 @@
-from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.core.urlresolvers import reverse
-# Create your models here.
+from django.db import models
+from django.conf import settings
+
 
 class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     title = models.CharField(max_length=120)
     image = models.FileField(null=True, blank=True)
     content = models.TextField()
